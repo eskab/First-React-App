@@ -31,8 +31,8 @@ const Task = React.createClass({
           <span>{this.props.description}</span>
         </div>
         <div>
-          <button onClick={this.props.del}>X</button>
-          <button onClick={this.props.toggle}>Mark</button>
+          <button onClick={this.props.del}>&#x2716;</button>
+          <button onClick={this.props.toggle}>&#x2714;</button>
         </div>
       </li>
     );
