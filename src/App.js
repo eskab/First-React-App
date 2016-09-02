@@ -65,6 +65,8 @@ export default class App extends Component {
   add(e) {
     e.preventDefault();
     let task = document.getElementsByName('newTask');
+    
+    if (!task[0].value) return;
 
     DATA.push({id: DATA.length, description: task[0].value});
     this.setState({data: DATA});    
