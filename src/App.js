@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 var ExampleButtonComponent = React.createClass({
   render: function() {
     return (
-      <button class="my-super-button"></button>
+      <button class="my-great-button"></button>
     );
   }
 })
