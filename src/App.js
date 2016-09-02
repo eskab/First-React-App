@@ -12,20 +12,6 @@ let DATA = [
   {id: 7, description: 'Re: transpiling with Babel, its caveats page says that Array.from is required for spread, but at present ', done: false}
 ];
 
-const TaskListStyles = {
-  listStyle: 'none',
-  padding: '0',
-  margin: '0'
-};
-
-const TaskStyles = {
-  color: '#555',
-  padding: '10px',
-  margin: '5px 0',
-  fontSize: '14px',
-  backgroundColor: '#f5f5f5'
-}
-
 const NewTaskForm = React.createClass({
   render: function() {
     return (
@@ -40,10 +26,14 @@ const NewTaskForm = React.createClass({
 const Task = React.createClass({
   render() {
     return (
-      <li style={TaskStyles} data-id={this.props.id} data-done={this.props.done} className={this.props.done}>
-        <span>{this.props.description}</span>
-        <button onClick={this.props.del}>X</button>
-        <button onClick={this.props.toggle}>Mark</button>
+      <li data-id={this.props.id} data-done={this.props.done} className={this.props.done}>
+        <div>
+          <span>{this.props.description}</span>
+        </div>
+        <div>
+          <button onClick={this.props.del}>X</button>
+          <button onClick={this.props.toggle}>Mark</button>
+        </div>
       </li>
     );
   }
@@ -54,7 +44,7 @@ const TaskList = React.createClass({
     let props = this.props;
 
     return (
-      <ul style={TaskListStyles} className="task-container">
+      <ul className="task-container">
         {this.props.data.map(function(result) {
           return <Task key={result.id} id={result.id} description={result.description} done={result.done} del={props.del} toggle={props.toggle} />;
         })}
@@ -82,15 +72,17 @@ export default class App extends Component {
 
   toggle(e) {
     e.preventDefault();
+    let parent = e.target.parentNode.parentNode;
 
-    DATA[e.target.parentNode.dataset.id].done = !DATA[e.target.parentNode.dataset.id].done;
+    DATA[parent.dataset.id].done = !DATA[parent.dataset.id].done;
     this.setState({ data: DATA });
   }  
   
   del(e) {
     e.preventDefault();
+    let parent = e.target.parentNode.parentNode;
 
-    DATA.splice(e.target.parentNode.dataset.id, 1);
+    DATA.splice(parent.dataset.id, 1);
     this.sortIds(() => {
       this.setState({data: DATA});
     });
