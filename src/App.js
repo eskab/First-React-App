@@ -45,7 +45,7 @@ const TaskList = React.createClass({
 
     return (
       <ul className="task-container">
-        {this.props.data.map(function(result) {
+        {this.props.data.map((result) => {
           return <Task key={result.id} id={result.id} description={result.description} done={result.done} del={props.del} toggle={props.toggle} />;
         })}
       </ul>
@@ -69,7 +69,9 @@ export default class App extends Component {
     if (!task[0].value) return;
 
     DATA.push({id: DATA.length, description: task[0].value});
-    this.setState({data: DATA});    
+    this.setState({data: DATA});
+
+    task[0].value = '';
   }
 
   toggle(e) {
