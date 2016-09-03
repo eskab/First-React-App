@@ -93,9 +93,10 @@ export default class App extends Component {
   }
 
   sortIds(cb) {
-    for (let i = 0; i < DATA.length; i++) {
-      DATA[i].id = i;
-    }
+    DATA.map((el, i) => {
+      el.id = i;
+    });
+    
     cb();
   }
 
