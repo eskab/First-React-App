@@ -5,22 +5,21 @@ import Redux, { createStore } from 'redux';
 import todoReducer from './todo/todoReducer';
 import TodoAddForm from './todo/TodoAddForm';
 
-const store = createStore(todoReducer, { todos: [] });
+let DATA = [
+  {id: 0, text: 'In React, inline styles are not specified as a string. Instead they are specified with an object whose key', completed: false},
+  {id: 1, text: 'Access current weather data for any location on Earth including over 200,000 cities!', completed: false},
+  {id: 2, text: 'The next thing you’ll need to do is add this data to the App components as its props.', completed: false},
+  {id: 3, text: 'Below, you’ll see how you pass the data into the App component, by simply changing a little bit on the ReactDOM.render method.', completed: false},
+  {id: 4, text: 'I recently started working with ReactJS. Specifically, I am utilizing the react-rails ruby gem and react-bootstrap components.', completed: false},
+  {id: 5, text: 'When fetching data asynchronously, use componentWillUnmount to cancel any outstanding requests before the component is unmounted.', completed: false},
+  {id: 6, text: 'IT to z pewnością rynek pracownika, co oznacza, że ma on często duży wpływ na kształtowanie warunków umowy o pracę.', completed: false},
+  {id: 7, text: 'Re: transpiling with Babel, its caveats page says that Array.from is required for spread, but at present ', completed: false}
+];
+
+const store = createStore(todoReducer, { todos: [...DATA] });
 store.subscribe(() => {
   ReactDOM.render(<App />, document.getElementById('root'));
 });
-let customId = 0;
-
-let DATA = [
-  {id: 0, description: 'In React, inline styles are not specified as a string. Instead they are specified with an object whose key', completed: false},
-  {id: 1, description: 'Access current weather data for any location on Earth including over 200,000 cities!', completed: false},
-  {id: 2, description: 'The next thing you’ll need to do is add this data to the App components as its props.', completed: false},
-  {id: 3, description: 'Below, you’ll see how you pass the data into the App component, by simply changing a little bit on the ReactDOM.render method.', completed: false},
-  {id: 4, description: 'I recently started working with ReactJS. Specifically, I am utilizing the react-rails ruby gem and react-bootstrap components.', completed: false},
-  {id: 5, description: 'When fetching data asynchronously, use componentWillUnmount to cancel any outstanding requests before the component is unmounted.', completed: false},
-  {id: 6, description: 'IT to z pewnością rynek pracownika, co oznacza, że ma on często duży wpływ na kształtowanie warunków umowy o pracę.', completed: false},
-  {id: 7, description: 'Re: transpiling with Babel, its caveats page says that Array.from is required for spread, but at present ', completed: false}
-];
 
 // const Task = React.createClass({
 //   render() {
@@ -66,14 +65,35 @@ export default class App extends Component {
             store.dispatch({
               type: 'ADD_TODO',
               text: document.getElementsByName('newTodo')[0].value,
-              id: customId++
+              id: store.getState().todos.length,
+              completed: false
             })
           } 
         />
-        <ul>
+        <ul className="task-container">
           {store.getState().todos.map(todo => 
-            <li key={todo.id}>
-              {todo.text}
+            <li key={todo.id} className={todo.completed ? true : false}>
+              <div>
+                <span>{todo.text}</span>
+              </div>
+              <div>
+                <button onClick={() => 
+                  store.dispatch({
+                    type: 'DELETE_TODO',
+                    id: todo.id
+                  })
+                }>
+                  &#x2716;
+                </button>
+                <button onClick={() => 
+                  store.dispatch({
+                    type: 'TOGGLE_TODO',
+                    id: todo.id
+                  })  
+                }>
+                  &#x2714;
+                </button>
+              </div>
             </li>
           )}
         </ul>
@@ -81,3 +101,4 @@ export default class App extends Component {
     );
   }
 }
+//console.log(<button onClick={this.props.toggle}>&#x2714;</button>);
