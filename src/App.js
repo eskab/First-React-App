@@ -7,7 +7,10 @@ import todoReducer from './todo/todoReducer';
 import TodoAddForm from './todo/TodoAddForm';
 import TodoList from './todo/TodoList';
 
-const store = createStore(todoReducer, { todos: [...DATA] });
+const store = createStore(todoReducer, {
+  todos: [...DATA],
+  filter: 'ALL'
+});
 store.subscribe(() => ReactDOM.render(<App />, document.getElementById('root')));
 
 export default class App extends Component {

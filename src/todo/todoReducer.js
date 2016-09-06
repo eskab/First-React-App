@@ -38,6 +38,11 @@ const todos = (state = {}, action) => {
       return {
         todos: state.todos.map(t => todo(t, action))
       };
+    case 'SET_VISIBILITY_FILTER':
+      return {
+        todos: state.todos,
+        filter: action.filter
+      };
     default: 
       return state;
   }
