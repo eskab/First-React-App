@@ -8,7 +8,7 @@ export default class TodoAdd extends Component {
   render() {
     return (
       <div className="todo-add-new">
-        <input name="newTodo" type="text" />
+        <input id="addNewTodo" type="text" />
         <button onClick={this.props.add}>Add</button>
       </div>
     );
