@@ -45,7 +45,7 @@ export default class TodoList extends Component {
                   id: todo.id
                 })  
               }
-              edit={() =>
+              edit={() => 
                 this.props.store.dispatch({
                   type: 'TOGGLE_EDIT_TODO',
                   id: todo.id,

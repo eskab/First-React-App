@@ -8,18 +8,16 @@ export default class TodoAdd extends Component {
   render() {
     return (
       <div className="todo-add-new">
-        <input ref={node => {
-          this.input = node;
-        }} />
+        <input ref="addNewTodo" />
         <button 
           onClick={() => {
             this.props.store.dispatch({
               type: 'ADD_TODO',
-              text: this.input.value,
+              text: this.refs.addNewTodo.value,
               id: this.props.store.getState().todos.length,
               completed: false
             })
-            this.input.value = '';
+            this.refs.addNewTodo.value = '';
           }}
         >
           Add
