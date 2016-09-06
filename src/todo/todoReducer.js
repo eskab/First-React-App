@@ -7,27 +7,34 @@ const todo = (state = {}, action) => {
         completed: false
       }
     case 'TOGGLE_TODO':
-      if (state.id === action.id) {
-        return {
-          ...state,
-          completed: !state.completed
-        };
+      if (state.id !== action.id) {
+        return state;
       }
+
+      return {
+        ...state,
+        completed: !state.completed
+      };
     case 'TOGGLE_EDIT_TODO':
-      if (state.id === action.id) {
-        return {
-          ...state,
-          editMode: action.editMode
-        }
-      }      
-    case 'EDIT_TODO':
-      if (state.id === action.id) {
-        return {
-          ...state,
-          editMode: action.editMode,
-          text: action.text
-        }
+      if (state.id !== action.id) {
+        return state;
       }
+
+      return {
+        ...state,
+        editMode: action.editMode
+      };      
+    case 'EDIT_TODO':
+      if (state.id !== action.id) {
+        return state;
+      }
+
+      return {
+        ...state,
+        completed: action.completed,
+        editMode: action.editMode,
+        text: action.text
+      };
     default:
       return state;
   }

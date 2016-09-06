@@ -3,26 +3,26 @@ import React, { Component } from 'react';
 import TodoItem from './TodoItem';
 import TodoFilterButton from './TodoFilterButton';
 
-const getTodos = (todos, filter) => {
-  switch (filter) {
-    case 'ALL':
-      return todos;
-    case 'ACTIVE':
-      return todos.filter(t => !t.completed)
-    case 'COMPLETED':
-      return todos.filter(t => t.completed)      
-    default: 
-      return todos;
-  }
-};
-
 export default class TodoList extends Component {
   constructor() {
     super();
   }
 
+  getTodos(todos, filter) {
+    switch (filter) {
+      case 'ALL':
+        return todos;
+      case 'ACTIVE':
+        return todos.filter(t => !t.completed)
+      case 'COMPLETED':
+        return todos.filter(t => t.completed)      
+      default: 
+        return todos;
+    }
+  }
+
   render() {
-    const todos = getTodos(this.props.store.getState().todos, this.props.store.getState().filter);
+    const todos = this.getTodos(this.props.store.getState().todos, this.props.store.getState().filter);
 
     return (
       <div>
@@ -39,7 +39,7 @@ export default class TodoList extends Component {
                   id: todo.id
                 })
               }
-              toggle={() =>
+              toggle={() => 
                 this.props.store.dispatch({
                   type: 'TOGGLE_TODO',
                   id: todo.id
@@ -54,9 +54,12 @@ export default class TodoList extends Component {
               }
               applyChanges={(e) => {
                 if (e.key === 'Enter') {
+                  const isChanged = todo.text !== e.target.value;
+
                   this.props.store.dispatch({
                     type: 'EDIT_TODO',
                     id: todo.id,
+                    completed: (isChanged) ? false : todo.completed,
                     editMode: false,
                     text: e.target.value
                   })                    
