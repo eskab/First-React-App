@@ -52,7 +52,7 @@ export default class TodoList extends Component {
                   editMode: true
                 })  
               }
-              applyEdit={(item, e) => {
+              applyEdit={(e) => {
                 if (e.key === 'Enter') {
                   this.props.store.dispatch({
                     type: 'EDIT_TODO',
