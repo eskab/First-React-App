@@ -21,36 +21,6 @@ store.subscribe(() => {
   ReactDOM.render(<App />, document.getElementById('root'));
 });
 
-// const Task = React.createClass({
-//   render() {
-//     return (
-//       <li data-id={this.props.id} data-done={this.props.completed} className={this.props.completed}>
-//         <div>
-//           <span>{this.props.description}</span>
-//         </div>
-//         <div>
-//           <button onClick={this.props.del}>&#x2716;</button>
-//           <button onClick={this.props.toggle}>&#x2714;</button>
-//         </div>
-//       </li>
-//     );
-//   }
-// });
-
-// const TaskList = React.createClass({
-//   render: function() {
-//     let props = this.props;
-
-//     return (
-//       <ul className="task-container">
-//         {this.props.data.map((result) => {
-//           return <Task key={result.id} id={result.id} description={result.description} completed={result.completed} del={props.del} toggle={props.toggle} />;
-//         })}
-//       </ul>
-//     );
-//   }
-// });
-
 export default class App extends Component {
   constructor() {
     super();
@@ -60,7 +30,7 @@ export default class App extends Component {
     return (
       <div className="my-first-react-app">
         <h1>Todo App</h1>
-        <TodoAddForm 
+        <TodoAddForm
           add={() => 
             store.dispatch({
               type: 'ADD_TODO',
@@ -101,4 +71,3 @@ export default class App extends Component {
     );
   }
 }
-//console.log(<button onClick={this.props.toggle}>&#x2714;</button>);
