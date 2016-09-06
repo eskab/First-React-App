@@ -15,6 +15,21 @@ const todo = (state = {}, action) => {
         ...state,
         completed: !state.completed
       };
+    case 'TOGGLE_EDIT_TODO':
+      if (state.id === action.id) {
+        return {
+          ...state,
+          editMode: action.editMode
+        }
+      }      
+    case 'EDIT_TODO':
+      if (state.id === action.id) {
+        return {
+          ...state,
+          editMode: action.editMode,
+          text: action.text
+        }
+      }
     default:
       return state;
   }
@@ -23,26 +38,27 @@ const todo = (state = {}, action) => {
 const todos = (state = {}, action) => {
   switch (action.type) {
     case 'ADD_TODO': 
-      return {
+      return Object.assign({}, state, {
         todos: [
           ...state.todos,
           todo(undefined, action)
         ]
-      };
+      });
     case 'DELETE_TODO': 
       const todoId = action.id;
-      return {
+      return Object.assign({}, state, {
         todos: state.todos.filter(todo => todo.id !== todoId)
-      };
+      });
     case 'TOGGLE_TODO':
-      return {
+    case 'TOGGLE_EDIT_TODO':
+    case 'EDIT_TODO':
+      return Object.assign({}, state, {
         todos: state.todos.map(t => todo(t, action))
-      };
+      });
     case 'SET_VISIBILITY_FILTER':
-      return {
-        todos: state.todos,
+      return Object.assign({}, state, {
         filter: action.filter
-      };
+      });
     default: 
       return state;
   }

@@ -27,23 +27,41 @@ export default class TodoList extends Component {
     return (
       <div>
         <ul className="todo-container">
-          {todos.map(todo => 
+          {todos.map(todo =>
             <TodoItem
               key={todo.id}
               text={todo.text}
               completed={todo.completed}
-              delete={() => 
+              editMode={todo.editMode}
+              delete={() =>
                 this.props.store.dispatch({
                   type: 'DELETE_TODO',
                   id: todo.id
                 })
               }
-              toggle={() => 
+              toggle={() =>
                 this.props.store.dispatch({
                   type: 'TOGGLE_TODO',
                   id: todo.id
                 })  
               }
+              edit={() =>
+                this.props.store.dispatch({
+                  type: 'TOGGLE_EDIT_TODO',
+                  id: todo.id,
+                  editMode: true
+                })  
+              }
+              applyEdit={(item, e) => {
+                if (e.key === 'Enter') {
+                  this.props.store.dispatch({
+                    type: 'EDIT_TODO',
+                    id: todo.id,
+                    editMode: false,
+                    text: e.target.value
+                  })                    
+                }
+              }}
             />
           )}
         </ul>
