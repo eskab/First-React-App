@@ -7,14 +7,12 @@ const todo = (state = {}, action) => {
         completed: false
       }
     case 'TOGGLE_TODO':
-      if (state.id !== action.id) {
-        return state;
+      if (state.id === action.id) {
+        return {
+          ...state,
+          completed: !state.completed
+        };
       }
-
-      return {
-        ...state,
-        completed: !state.completed
-      };
     case 'TOGGLE_EDIT_TODO':
       if (state.id === action.id) {
         return {
