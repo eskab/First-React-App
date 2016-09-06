@@ -49,10 +49,10 @@ export default class TodoList extends Component {
                 this.props.store.dispatch({
                   type: 'TOGGLE_EDIT_TODO',
                   id: todo.id,
-                  editMode: true
+                  editMode: (todo.editMode !== undefined) ? !todo.editMode : true
                 })  
               }
-              applyEdit={(e) => {
+              applyChanges={(e) => {
                 if (e.key === 'Enter') {
                   this.props.store.dispatch({
                     type: 'EDIT_TODO',
