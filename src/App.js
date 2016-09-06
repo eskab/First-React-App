@@ -20,14 +20,7 @@ export default class App extends Component {
       <div className="my-first-react-app">
         <h1>Todo App</h1>
         <TodoAddForm
-          add={() =>
-            store.dispatch({
-              type: 'ADD_TODO',
-              text: document.getElementById('addNewTodo').value,
-              id: store.getState().todos.length,
-              completed: false
-            })
-          } 
+          store={store}
         />
         <TodoList
           store={store}
