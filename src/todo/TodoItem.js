@@ -9,25 +9,11 @@ export default class TodoItem extends Component {
     return (
       <li>
         <div>
-          <span style={{textDecoration: this.props.todo.completed ? 'line-through' : 'none'}}>{this.props.todo.text}</span>
+          <span style={{textDecoration: this.props.completed ? 'line-through' : 'none'}}>{this.props.text}</span>
         </div>
         <div>
-          <button onClick={() => 
-            this.props.store.dispatch({
-              type: 'DELETE_TODO',
-              id: this.props.todo.id
-            })
-          }>
-            &#x2716;
-          </button>
-          <button onClick={() => 
-            this.props.store.dispatch({
-              type: 'TOGGLE_TODO',
-              id: this.props.todo.id
-            })  
-          }>
-            &#x2714;
-          </button>
+          <button onClick={this.props.delete}>&#x2716;</button>
+          <button onClick={this.props.toggle}>&#x2714;</button>
         </div>
       </li>
     );

@@ -8,9 +8,7 @@ import TodoAddForm from './todo/TodoAddForm';
 import TodoList from './todo/TodoList';
 
 const store = createStore(todoReducer, { todos: [...DATA] });
-store.subscribe(() => {
-  ReactDOM.render(<App />, document.getElementById('root'));
-});
+store.subscribe(() => ReactDOM.render(<App />, document.getElementById('root')));
 
 export default class App extends Component {
   constructor() {
@@ -22,7 +20,7 @@ export default class App extends Component {
       <div className="my-first-react-app">
         <h1>Todo App</h1>
         <TodoAddForm
-          add={() => 
+          add={() =>
             store.dispatch({
               type: 'ADD_TODO',
               text: document.getElementById('addNewTodo').value,

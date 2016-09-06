@@ -13,8 +13,20 @@ export default class TodoList extends Component {
         {this.props.store.getState().todos.map(todo => 
           <TodoItem
             key={todo.id}
-            todo={todo}
-            store={this.props.store}
+            text={todo.text}
+            completed={todo.completed}
+            delete={() => 
+              this.props.store.dispatch({
+                type: 'DELETE_TODO',
+                id: todo.id
+              })
+            }
+            toggle={() => 
+              this.props.store.dispatch({
+                type: 'TOGGLE_TODO',
+                id: todo.id
+              })  
+            }
           />
         )}
       </ul>
