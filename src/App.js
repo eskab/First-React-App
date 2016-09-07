@@ -1,11 +1,13 @@
 import React from 'react';
 
-import NewTodoList from './containers/TodoList';
+import TodoAddForm from './containers/TodoAddForm';
+import TodoList from './containers/TodoList';
 
 const App = () => (
   <div>
     <h1>Todo App</h1>
-    <NewTodoList />
+    <TodoAddForm />
+    <TodoList />
   </div>
 );
 
