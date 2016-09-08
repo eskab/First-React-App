@@ -5,7 +5,7 @@ import TodoAddForm from '../components/TodoAddForm';
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.todos
+    length: state.todos.length
   }
 };
 

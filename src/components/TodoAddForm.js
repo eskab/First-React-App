@@ -8,13 +8,13 @@ const handleAddTodo = (e, id, cb, input) => {
   cb(id, input.value);
 };
 
-const TodoAddForm = ({ todos, handler }) => {
+const TodoAddForm = ({ length, handler }) => {
   let input;
 
   return (
     <div className="todo-add-new">
-      <input onKeyPress={(e) => handleAddTodo(e, todos.length, handler, input)} ref={node => { input = node; }} />
-      <button onClick={(e) => handleAddTodo(e, todos.length, handler, input)}>Add</button>
+      <input onKeyPress={(e) => handleAddTodo(e, length, handler, input)} ref={node => { input = node; }} />
+      <button onClick={(e) => handleAddTodo(e, length, handler, input)}>Add</button>
     </div>
   )
 };
