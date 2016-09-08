@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 
+import { setFilter } from '../actions';
 import TodoFilterButton from '../components/TodoFilterButton';
 
 const mapStateToProps = (state, ownProps) => {
@@ -10,12 +11,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onClick: () => {
-      dispatch({
-        type: 'SET_VISIBILITY_FILTER', 
-        filter: ownProps.filter
-      })
-    }     
+    onClick: () => dispatch(setFilter(ownProps.filter))    
   }
 };
 

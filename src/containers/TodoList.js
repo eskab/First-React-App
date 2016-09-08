@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 
+import { deleteTodo, toggleTodo, toggleEditTodo, applyChanges } from '../actions';
 import TodoList from '../components/TodoList';
 
 const getTodos = (todos, filter) => {
@@ -23,34 +24,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    del: (id) => {
-      dispatch({
-        type: 'DELETE_TODO', 
-        id: id
-      })
-    },
-    toggle: (id) => {
-      dispatch({ 
-        type: 'TOGGLE_TODO', 
-        id: id 
-      });
-    },
-    edit: (id, editMode) => {
-      dispatch({
-        type: 'TOGGLE_EDIT_TODO', 
-        id: id, 
-        editMode: (editMode !== undefined) ? !editMode : true 
-      });
-    }, 
-    applyChanges: (id, isChanged, completed, text) => {
-      dispatch({ 
-        type: 'EDIT_TODO',
-        id: id,
-        completed: (isChanged) ? false : completed,
-        editMode: false,
-        text: text
-      });
-    },     
+    del: (id) => dispatch(deleteTodo(id)),
+    toggle: (id) => dispatch(toggleTodo(id)),
+    edit: (id, editMode) => dispatch(toggleEditTodo(id, editMode)), 
+    applyChanges: (id, isChanged, completed, text) => dispatch(applyChanges(id, isChanged, completed, text)),     
   }
 };
 
