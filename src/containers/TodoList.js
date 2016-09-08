@@ -23,26 +23,26 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    cbDelete: (id) => {
+    del: (id) => {
       dispatch({
         type: 'DELETE_TODO', 
         id: id
       })
     },
-    cbToggle: (id) => {
+    toggle: (id) => {
       dispatch({ 
         type: 'TOGGLE_TODO', 
         id: id 
       });
     },
-    cbEdit: (id, editMode) => {
+    edit: (id, editMode) => {
       dispatch({
         type: 'TOGGLE_EDIT_TODO', 
         id: id, 
         editMode: (editMode !== undefined) ? !editMode : true 
       });
     }, 
-    cbApplyChanges: (id, isChanged, completed, text) => {
+    applyChanges: (id, isChanged, completed, text) => {
       dispatch({ 
         type: 'EDIT_TODO',
         id: id,

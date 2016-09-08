@@ -2,21 +2,21 @@ import React, { PropTypes } from 'react';
 
 import TodoItem from './TodoItem';
 
-const TodoList = ({todos, cbDelete, cbToggle, cbEdit, cbApplyChanges}) => {
+const TodoList = ({ todos, del, toggle, edit, applyChanges }) => {
   return (
     <ul className="todo-container">
       {todos.map(t => 
         <TodoItem 
           key={t.id}
           {...t}
-          del={() => cbDelete(t.id)}
-          toggle={() => cbToggle(t.id)}
-          edit={() => cbEdit(t.id, t.editMode)}
+          del={() => del(t.id)}
+          toggle={() => toggle(t.id)}
+          edit={() => edit(t.id, t.editMode)}
           applyChanges={(e) => {
             if (e.key === 'Enter') {
               const isChanged = t.text !== e.target.value;
 
-              cbApplyChanges(t.id, isChanged, t.completed, e.target.value);
+              applyChanges(t.id, isChanged, t.completed, e.target.value);
             }
           }}
         />
@@ -32,10 +32,10 @@ TodoList.propTypes = {
     completed: PropTypes.bool.isRequired,
     editMode: PropTypes.bool
   }).isRequired).isRequired,
-  cbDelete: PropTypes.func.isRequired,
-  cbToggle: PropTypes.func.isRequired,
-  cbEdit: PropTypes.func.isRequired,
-  cbApplyChanges: PropTypes.func.isRequired
+  del: PropTypes.func.isRequired,
+  toggle: PropTypes.func.isRequired,
+  edit: PropTypes.func.isRequired,
+  applyChanges: PropTypes.func.isRequired
 };
 
 export default TodoList;
