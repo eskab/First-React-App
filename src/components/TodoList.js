@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import TodoItem from './TodoItem2';
+import TodoItem from './TodoItem';
 
 const TodoList = ({todos, cbDelete, cbToggle, cbEdit, cbApplyChanges}) => {
   return (
