@@ -1,14 +1,20 @@
 import * as types from './constans/actionTypes';
 
 export const deleteTodo = (id) => {
-  return {
-    type: types.DELETE_TODO,
-    id: id
+  return dispatch => {
+    dispatch(pendingRequest())
+    return fetch(`http://localhost:3000/todos/${id}`, {
+      method: 'DELETE',
+      body: JSON.stringify({
+        id: id
+      })
+    })
+    .then(response => response.json())
+    .then(json => dispatch(Object.assign({}, json, { type: types.DELETE_TODO, id: id })))
   }
 }
 
-export const toggleTodo = (id, text) => {
-  console.log(id, text);
+export const toggleTodo = (id, text, completed) => {
   return dispatch => {
     dispatch(pendingRequest())
     return fetch(`http://localhost:3000/todos/${id}`, {
@@ -20,18 +26,12 @@ export const toggleTodo = (id, text) => {
       body: JSON.stringify({
         id: id,
         text: text,
-        completed: true
+        completed: !completed
       })
     })
-    .then((response) => response.json())
-    .then((json) => console.log(json))
-    
-    //.then(json => dispatch(Object.assign({}, json, { type: types.ADD_TODO })))
-    //.catch(error => console.log(error))
-  }  
-  return {
-    type: types.TOGGLE_TODO,
-    id: id
+    .then(response => response.json())
+    .then(json => dispatch(Object.assign({}, json, { type: types.TOGGLE_TODO })))
+    .catch(error => console.log(error))
   }
 }
 
@@ -43,13 +43,24 @@ export const toggleEditTodo = (id, editMode) => {
   }
 }
 
-export const applyChanges = (id, isChanged, completed, text) => {
-  return {
-    type: types.EDIT_TODO,
-    id: id,
-    completed: (isChanged) ? false : completed,
-    editMode: false,
-    text: text
+export const applyChanges = (id, completed, text) => {
+  return dispatch => {
+    dispatch(pendingRequest())
+    return fetch(`http://localhost:3000/todos/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: id,
+        text: text,
+        completed: completed
+      })
+    })
+    .then(response => response.json())
+    .then(json => dispatch(Object.assign({}, json, { type: types.EDIT_TODO, editMode: false })))
+    .catch(error => console.log(error))
   }
 }
 
@@ -68,7 +79,7 @@ export const addTodo = (id, text) => {
         completed: false
       })
     })
-    .then((response) => response.json())
+    .then(response => response.json())
     .then(json => dispatch(Object.assign({}, json, { type: types.ADD_TODO })))
     .catch(error => console.log(error))
   }  
