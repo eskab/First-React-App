@@ -1,39 +1,39 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 
-export default class TodoItem extends Component {
-  constructor(props) {
-    super();
-    this.state = { value: props.text }
-    this.handleChange = this.handleChange.bind(this);
-  }
+const TodoItem = ({ text, completed, editMode, del, toggle, edit, applyChanges }) => {
+  return (
+    <li>
+      <div>
+        { !editMode 
+            ? 
+            <span 
+              style={{textDecoration: completed ? 'line-through' : 'none'}}>
+              {text}
+            </span> 
+            :
+            <input 
+              defaultValue={text}
+              onKeyPress={applyChanges}
+            />
+        }
+      </div>
+      <div>
+        <button onClick={edit}>&#x2702;</button>
+        <button onClick={del}>&#x2716;</button>
+        <button onClick={toggle}>&#x2714;</button>
+      </div>
+    </li> 
+  );
+};
 
-  handleChange(e) {
-    this.setState({ value: e.target.value });
-  }
+TodoItem.propTypes = {
+  text: PropTypes.string.isRequired,
+  completed: PropTypes.bool.isRequired,
+  editMode: PropTypes.bool,
+  del: PropTypes.func.isRequired,
+  toggle: PropTypes.func.isRequired,
+  edit: PropTypes.func.isRequired,
+  applyChanges: PropTypes.func.isRequired
+};
 
-  render() {
-    return (
-      <li>
-        <div>
-          { !this.props.editMode 
-              ? 
-              <span style={{textDecoration: this.props.completed ? 'line-through' : 'none', display: this.props.editMode ? 'none' : 'block'}}>{this.props.text}</span> 
-              :
-              <input 
-                onChange={this.handleChange}
-                onKeyPress={this.props.applyChanges}
-                style={{display: this.props.editMode ? 'block' : 'none'}} 
-                value={this.state.value}
-                ref="editTodoInput"
-              />
-          }
-        </div>
-        <div>
-          <button onClick={this.props.edit}>&#x2702;</button>
-          <button onClick={this.props.delete}>&#x2716;</button>
-          <button onClick={this.props.toggle}>&#x2714;</button>
-        </div>
-      </li>      
-    );
-  }
-}
+export default TodoItem;

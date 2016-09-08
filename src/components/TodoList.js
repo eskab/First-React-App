@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import TodoItem from './TodoItem';
+import TodoItem from './TodoItem2';
 
 const TodoList = ({todos, cbDelete, cbToggle, cbEdit, cbApplyChanges}) => {
   return (
@@ -9,7 +9,7 @@ const TodoList = ({todos, cbDelete, cbToggle, cbEdit, cbApplyChanges}) => {
         <TodoItem 
           key={t.id}
           {...t}
-          delete={() => cbDelete(t.id)}
+          del={() => cbDelete(t.id)}
           toggle={() => cbToggle(t.id)}
           edit={() => cbEdit(t.id, t.editMode)}
           applyChanges={(e) => {
