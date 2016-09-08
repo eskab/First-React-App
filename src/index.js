@@ -4,10 +4,10 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 import DATA from './data';
-import todoReducer from './reducers/todoReducer';
+import todos from './reducers';
 import App from './App';
 
-const store = createStore(todoReducer, { todos: [...DATA], filter: 'ALL' });
+const store = createStore(todos, { todos: [...DATA], filter: 'ALL' });
 
 ReactDOM.render(
   <Provider store={store}>
