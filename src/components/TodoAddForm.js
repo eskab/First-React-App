@@ -20,6 +20,7 @@ const TodoAddForm = ({ length, handler }) => {
 };
 
 TodoAddForm.propTypes = {
+  length: PropTypes.number.isRequired,
   handler: PropTypes.func.isRequired
 };
 

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 import DATA from './data';
-import { todos } from './todo/todoReducer';
+import { todos } from './reducers/todoReducer';
 import App from './App';
 
 const store = createStore(todos, { todos: [...DATA], filter: 'ALL' });

@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 
-import { todo, todos } from '../todo/todoReducer';
 import TodoList from '../components/TodoList';
 
 const getTodos = (todos, filter) => {

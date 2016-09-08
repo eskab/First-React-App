@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 
-import { todo, todos } from '../todo/todoReducer';
 import TodoAddForm from '../components/TodoAddForm';
 
 const mapStateToProps = (state) => {

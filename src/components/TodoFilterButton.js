@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const TodoFilterButton = (onClick, text) => (
+const TodoFilterButton = ({ text, onClick }) => (
   <button onClick={onClick} style={{ margin: '0 3px' }}>
     {text}
   </button>   
