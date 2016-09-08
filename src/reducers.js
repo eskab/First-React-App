@@ -1,23 +1,14 @@
-import { 
-  ADD_TODO,
-  DELETE_TODO,
-  TOGGLE_TODO,
-  TOGGLE_EDIT_TODO,
-  EDIT_TODO,
-  SET_VISIBILITY_FILTER,
-  PENDING_REQUEST,
-  RECEIVE_TODOS
-} from './actions';
+import * as types from './constans/actionTypes';
 
 const todo = (state = {}, action) => {
   switch (action.type) {
-    case ADD_TODO: 
+    case types.ADD_TODO: 
       return {
         id: action.id,
         text: action.text,
         completed: false
       }
-    case TOGGLE_TODO:
+    case types.TOGGLE_TODO:
       if (state.id !== action.id) {
         return state;
       }
@@ -26,7 +17,7 @@ const todo = (state = {}, action) => {
         ...state,
         completed: !state.completed
       };
-    case TOGGLE_EDIT_TODO:
+    case types.TOGGLE_EDIT_TODO:
       if (state.id !== action.id) {
         return state;
       }
@@ -35,7 +26,7 @@ const todo = (state = {}, action) => {
         ...state,
         editMode: action.editMode
       };      
-    case EDIT_TODO:
+    case types.EDIT_TODO:
       if (state.id !== action.id) {
         return state;
       }
@@ -53,11 +44,7 @@ const todo = (state = {}, action) => {
 
 const todos = (state = {}, action) => {
   switch (action.type) {
-    case ADD_TODO: 
-      console.log('state is:')
-      console.log(state);
-      console.log('action is:')
-      console.log(action)
+    case types.ADD_TODO: 
       return Object.assign({}, state, {
         todos: {
           pending: false,
@@ -67,33 +54,34 @@ const todos = (state = {}, action) => {
           ]
         }
       });
-    case DELETE_TODO: 
+    case types.DELETE_TODO: 
       const todoId = action.id;
       return Object.assign({}, state, {
         todos: {
           items: state.todos.items.filter(todo => todo.id !== todoId)
         }
       });
-    case TOGGLE_TODO:
-    case TOGGLE_EDIT_TODO:
-    case EDIT_TODO:
+    case types.TOGGLE_TODO:
+    case types.TOGGLE_EDIT_TODO:
+    case types.EDIT_TODO:
       return Object.assign({}, state, {
         todos: {
           items: state.todos.items.map(t => todo(t, action))
         }
       });
-    case SET_VISIBILITY_FILTER:
+    case types.SET_VISIBILITY_FILTER:
       return Object.assign({}, state, {
         filter: action.filter
       });
-    case PENDING_REQUEST:
+    case types.PENDING_REQUEST:
       return Object.assign({}, state, {
         todos: {
           pending: true,
           items: state.todos.items
         }
       })
-    case RECEIVE_TODOS:
+    case types.RECEIVE_TODOS:
+      console.log(action)
       return Object.assign({}, state, {
         todos: {
           pending: false,

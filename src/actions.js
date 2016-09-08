@@ -1,31 +1,43 @@
-export const ADD_TODO = 'ADD_TODO';
-export const DELETE_TODO = 'DELETE_TODO';
-export const TOGGLE_TODO = 'TOGGLE_TODO';
-export const TOGGLE_EDIT_TODO = 'TOGGLE_EDIT_TODO';
-export const EDIT_TODO = 'EDIT_TODO';
-
-export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
-
-export const PENDING_REQUEST = 'PENDING_REQUEST';
-export const RECEIVE_TODOS = 'RECEIVE_TODOS'; 
+import * as types from './constans/actionTypes';
 
 export const deleteTodo = (id) => {
   return {
-    type: DELETE_TODO,
+    type: types.DELETE_TODO,
     id: id
   }
 }
 
-export const toggleTodo = (id) => {
+export const toggleTodo = (id, text) => {
+  console.log(id, text);
+  return dispatch => {
+    dispatch(pendingRequest())
+    return fetch(`http://localhost:3000/todos/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: id,
+        text: text,
+        completed: true
+      })
+    })
+    .then((response) => response.json())
+    .then((json) => console.log(json))
+    
+    //.then(json => dispatch(Object.assign({}, json, { type: types.ADD_TODO })))
+    //.catch(error => console.log(error))
+  }  
   return {
-    type: TOGGLE_TODO,
+    type: types.TOGGLE_TODO,
     id: id
   }
 }
 
 export const toggleEditTodo = (id, editMode) => {
   return {
-    type: TOGGLE_EDIT_TODO,
+    type: types.TOGGLE_EDIT_TODO,
     id: id,
     editMode: (editMode !== undefined) ? !editMode : true
   }
@@ -33,7 +45,7 @@ export const toggleEditTodo = (id, editMode) => {
 
 export const applyChanges = (id, isChanged, completed, text) => {
   return {
-    type: EDIT_TODO,
+    type: types.EDIT_TODO,
     id: id,
     completed: (isChanged) ? false : completed,
     editMode: false,
@@ -43,7 +55,7 @@ export const applyChanges = (id, isChanged, completed, text) => {
 
 export const addTodo = (id, text) => {
   return dispatch => {
-    dispatch(requestTodos())
+    dispatch(pendingRequest())
     return fetch('http://localhost:3000/todos', {
       method: 'POST',
       headers: {
@@ -57,34 +69,34 @@ export const addTodo = (id, text) => {
       })
     })
     .then((response) => response.json())
-    .then(json => dispatch(Object.assign({}, json, { type: ADD_TODO })))
+    .then(json => dispatch(Object.assign({}, json, { type: types.ADD_TODO })))
     .catch(error => console.log(error))
   }  
 }
 
 export const setFilter = (filter) => {
   return {
-    type: SET_VISIBILITY_FILTER,
+    type: types.SET_VISIBILITY_FILTER,
     filter: filter
   }
 }
 
-export const requestTodos = () => {
+export const pendingRequest = () => {
   return {
-    type: PENDING_REQUEST
+    type: types.PENDING_REQUEST
   }
 }
 
 export const receiveTodos = (json) => {
   return {
-    type: RECEIVE_TODOS,
+    type: types.RECEIVE_TODOS,
     todos: json
   }
 }
 
 export const fetchTodos = () => {
   return dispatch => {
-    dispatch(requestTodos())
+    dispatch(pendingRequest())
     return fetch('http://localhost:3000/todos')
       .then(response => response.json())
       .then(json => dispatch(receiveTodos(json)))

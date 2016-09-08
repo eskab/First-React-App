@@ -10,7 +10,7 @@ const TodoList = ({ todos, del, toggle, edit, applyChanges }) => {
           key={t.id}
           {...t}
           del={() => del(t.id)}
-          toggle={() => toggle(t.id)}
+          toggle={() => toggle(t.id, t.text)}
           edit={() => edit(t.id, t.editMode)}
           applyChanges={(e) => {
             if (e.key === 'Enter') {

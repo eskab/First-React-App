@@ -25,7 +25,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     del: (id) => dispatch(deleteTodo(id)),
-    toggle: (id) => dispatch(toggleTodo(id)),
+    toggle: (id, text) => dispatch(toggleTodo(id, text)),
     edit: (id, editMode) => dispatch(toggleEditTodo(id, editMode)), 
     applyChanges: (id, isChanged, completed, text) => dispatch(applyChanges(id, isChanged, completed, text)),     
   }
