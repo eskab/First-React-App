@@ -33,12 +33,12 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   const {
-    isFetching,
+    pending,
     items
   } = state.todos
 
   return {
-    isFetching,
+    pending,
     items
   }
 }

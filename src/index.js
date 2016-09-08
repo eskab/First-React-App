@@ -16,8 +16,7 @@ const store = createStore(
   todos, 
   { 
     todos: {
-      isFetching: false,
-      didInvalidate: false,
+      pending: false,
       items: []
     }, 
     filter: 'ALL' 

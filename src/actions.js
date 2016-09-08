@@ -6,7 +6,7 @@ export const EDIT_TODO = 'EDIT_TODO';
 
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 
-export const REQUEST_TODOS = 'REQUEST_TODOS';
+export const PENDING_REQUEST = 'PENDING_REQUEST';
 export const RECEIVE_TODOS = 'RECEIVE_TODOS'; 
 
 export const deleteTodo = (id) => {
@@ -42,12 +42,28 @@ export const applyChanges = (id, isChanged, completed, text) => {
 }
 
 export const addTodo = (id, text) => {
-  return {
-    type: ADD_TODO,
-    id: id,
-    completed: false,
-    text: text
-  }
+  return dispatch => {
+    dispatch(requestTodos())
+    return fetch('http://localhost:3000/todos', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: id,
+        text: text,
+        completed: false
+      })
+    })
+    .then((response) => response.json())
+    .then(json => {
+      console.log(json);
+      dispatch(Object.assign({}, json, {
+        type: ADD_TODO
+      }))
+    })
+  }  
 }
 
 export const setFilter = (filter) => {
@@ -59,7 +75,7 @@ export const setFilter = (filter) => {
 
 export const requestTodos = () => {
   return {
-    type: REQUEST_TODOS
+    type: PENDING_REQUEST
   }
 }
 
