@@ -27,7 +27,7 @@ const TodoList = ({ todos, del, toggle, edit, applyChanges }) => {
 
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
     editMode: PropTypes.bool

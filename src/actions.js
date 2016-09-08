@@ -57,12 +57,8 @@ export const addTodo = (id, text) => {
       })
     })
     .then((response) => response.json())
-    .then(json => {
-      console.log(json);
-      dispatch(Object.assign({}, json, {
-        type: ADD_TODO
-      }))
-    })
+    .then(json => dispatch(Object.assign({}, json, { type: ADD_TODO })))
+    .catch(error => console.log(error))
   }  
 }
 

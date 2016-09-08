@@ -54,6 +54,10 @@ const todo = (state = {}, action) => {
 const todos = (state = {}, action) => {
   switch (action.type) {
     case ADD_TODO: 
+      console.log('state is:')
+      console.log(state);
+      console.log('action is:')
+      console.log(action)
       return Object.assign({}, state, {
         todos: {
           pending: false,
