@@ -6,6 +6,7 @@ const handleAddTodo = (e, id, input, cb) => {
   }
 
   cb(id, input.value);
+  input.value = '';
 };
 
 const TodoAddForm = ({ length, handler }) => {
