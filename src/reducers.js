@@ -4,7 +4,9 @@ import {
   TOGGLE_TODO,
   TOGGLE_EDIT_TODO,
   EDIT_TODO,
-  SET_VISIBILITY_FILTER
+  SET_VISIBILITY_FILTER,
+  REQUEST_TODOS,
+  RECEIVE_TODOS
 } from './actions';
 
 const todo = (state = {}, action) => {
@@ -52,11 +54,14 @@ const todo = (state = {}, action) => {
 const todos = (state = {}, action) => {
   switch (action.type) {
     case ADD_TODO: 
+      console.log(state);
       return Object.assign({}, state, {
-        todos: [
-          ...state.todos,
-          todo(undefined, action)
-        ]
+        todos: {
+          items: [
+            ...state.todos.items,
+            todo(undefined, action)
+          ]
+        }
       });
     case DELETE_TODO: 
       const todoId = action.id;
@@ -73,6 +78,22 @@ const todos = (state = {}, action) => {
       return Object.assign({}, state, {
         filter: action.filter
       });
+    case REQUEST_TODOS:
+      return Object.assign({}, state, {
+        todos: {
+          isFetching: true,
+          didInvalidate: false,
+          items: state.todos.items
+        }
+      })
+    case RECEIVE_TODOS:
+      return Object.assign({}, state, {
+        todos: {
+          isFetching: false,
+          didInvalidate: false,
+          items: action.todos
+        }
+      })      
     default: 
       return state;
   }

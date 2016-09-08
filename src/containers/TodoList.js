@@ -18,7 +18,7 @@ const getTodos = (todos, filter) => {
 
 const mapStateToProps = (state) => {
   return {
-    todos: getTodos(state.todos, state.filter)
+    todos: getTodos(state.todos.items, state.filter)
   }
 };
 
