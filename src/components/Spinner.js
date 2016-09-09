@@ -13,7 +13,7 @@ const Spinner = ({ pending }) => {
 }
 
 Spinner.propTypes = {
-
+  pending: PropTypes.bool.isRequired
 };
 
 export default Spinner;
