@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { fetchTodos } from './actions';
 
+import Spinner from './containers/Spinner';
 import TodoAddForm from './containers/TodoAddForm';
 import TodoList from './containers/TodoList';
 import TodoFilterButton from './containers/TodoFilterButton';
@@ -19,8 +20,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="my-todo-app">
+      <div className="my-app">
         <h1>Todo App</h1>
+        <Spinner />
         <TodoAddForm />
         <TodoList />
         <TodoFilterButton text="All" filter="ALL" />
