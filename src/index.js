@@ -14,7 +14,7 @@ const loggerMiddleware = createLogger();
 
 const store = createStore(
   todos, 
-  { 
+  {
     todos: {
       pending: false,
       items: []

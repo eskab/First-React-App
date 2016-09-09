@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { setFilter } from '../actions';
+import { setFilter } from '../actions/todos';
 import TodoFilterButton from '../components/TodoFilterButton';
 
 const mapStateToProps = (state, ownProps) => {

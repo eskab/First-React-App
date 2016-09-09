@@ -40,11 +40,11 @@ const todo = (state = {}, action) => {
     default:
       return state;
   }
-};
+}
 
 const todos = (state = {}, action) => {
   switch (action.type) {
-    case types.ADD_TODO: 
+    case types.ADD_TODO:
       return {
         ...state,
         todos: {
@@ -55,7 +55,7 @@ const todos = (state = {}, action) => {
           pending: false
         }
       }    
-    case types.DELETE_TODO: 
+    case types.DELETE_TODO:
       const todoId = action.id;
       return {
         ...state,

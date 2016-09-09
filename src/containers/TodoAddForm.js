@@ -1,12 +1,10 @@
 import { connect } from 'react-redux';
 
-import { addTodo } from '../actions';
+import { addTodo } from '../actions/todos';
 import TodoAddForm from '../components/TodoAddForm';
 
 const mapStateToProps = (state) => {
-  return {
-    length: state.todos.items.length
-  }
+  return {}
 };
 
 const mapDispatchToProps = (dispatch) => {

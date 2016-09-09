@@ -4,7 +4,7 @@ const Spinner = ({ pending }) => {
   if (pending) {
     return (
       <div className="spinner">
-        <img src="http://www.escalatemedia.com/wp-content/themes/builder/assets/img/spinner.gif" alt="Loading" />
+        <img src="http://www.lettersmarket.com/uploads/lettersmarket/blog/loaders/common_metal/ajax_loader_metal_512.gif" alt="Loading" />
       </div>  
     )  
   }

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
-import { deleteTodo, toggleTodo, toggleEditTodo, applyChanges } from '../actions';
+import { toggleTodo, toggleEditTodo, applyChanges } from '../actions/todo';
+import { deleteTodo } from '../actions/todos'
 import TodoList from '../components/TodoList';
 
 const getTodos = (todos, filter) => {
