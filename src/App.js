@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchTodos } from './actions';
+import { fetchTodos } from './actions/todos';
 
 import Spinner from './containers/Spinner';
 import TodoAddForm from './containers/TodoAddForm';
