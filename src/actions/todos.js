@@ -38,13 +38,22 @@ export const deleteTodo = (id) => {
   }
 }
 
-export const markAll = (todos) => {
-  return dispatch => {
-    dispatch(pendingRequest())
-    todos.map((item) => {
-      return dispatch(toggleTodo(item.id, item.text, false))
-    })
-  }  
+export const markAll = () => {
+  return (dispatch, getState) => {
+    const items = getState().todos.items;
+    let count = 0;
+    
+    items.map((item) => {
+      dispatch(toggleTodo(item.id, item.text, false))
+        .then(() => {
+          if (count === items.length - 1) {
+            console.log('completed promises');
+          } else {
+            count++;
+          }
+        })
+    });
+  }
 }
 
 export const setFilter = (filter) => {

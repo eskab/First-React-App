@@ -30,7 +30,7 @@ class App extends Component {
         <TodoFilterButton text="All" filter="ALL" />
         <TodoFilterButton text="Active" filter="ACTIVE" />
         <TodoFilterButton text="Completed" filter="COMPLETED" />
-        <MarkAllButton text="Mark all" todos={this.props.items} />
+        <MarkAllButton text="Mark all" />
       </div>
     );
   }

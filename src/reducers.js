@@ -71,7 +71,7 @@ const todos = (state = {}, action) => {
         ...state, 
         todos: { 
           items: state.todos.items.map(t => todo(t, action)), 
-          pending: false 
+          pending: false
         } 
       }
     case types.SET_VISIBILITY_FILTER:

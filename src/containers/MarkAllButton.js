@@ -9,9 +9,9 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onClick: () => dispatch(markAll(ownProps.todos))
+    onClick: () => dispatch(markAll())
   }
 };
 

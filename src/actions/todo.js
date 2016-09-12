@@ -4,7 +4,7 @@ import { pendingRequest } from './todos';
 
 export const toggleTodo = (id, text, completed) => {
   return dispatch => {
-    dispatch(pendingRequest())
+    // dispatch(pendingRequest())
     return fetch(`http://localhost:3000/todos/${id}`, {
       method: 'PUT',
       headers: {
