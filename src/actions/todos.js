@@ -42,12 +42,13 @@ export const markAll = () => {
   return (dispatch, getState) => {
     const items = getState().todos.items;
     let count = 0;
-    
+
+    dispatch(pendingRequest())
     items.map((item) => {
       dispatch(toggleTodo(item.id, item.text, false))
         .then(() => {
           if (count === items.length - 1) {
-            console.log('completed promises');
+            dispatch(requestDone())
           } else {
             count++;
           }
@@ -66,6 +67,12 @@ export const setFilter = (filter) => {
 export const pendingRequest = () => {
   return {
     type: types.PENDING_REQUEST
+  }
+}
+
+export const requestDone = () => {
+  return {
+    type: types.REQUEST_DONE
   }
 }
 

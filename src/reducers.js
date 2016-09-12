@@ -70,8 +70,8 @@ const todos = (state = {}, action) => {
       return {
         ...state, 
         todos: { 
-          items: state.todos.items.map(t => todo(t, action)), 
-          pending: false
+          ...state.todos,
+          items: state.todos.items.map(t => todo(t, action))
         } 
       }
     case types.SET_VISIBILITY_FILTER:
@@ -87,6 +87,14 @@ const todos = (state = {}, action) => {
           items: state.todos.items
         }
       }
+    case types.REQUEST_DONE:
+      return {
+        ...state,
+        todos: {
+          ...state.todos,
+          pending: false
+        }
+      }      
     case types.RECEIVE_TODOS:
       return {
         ...state, 
