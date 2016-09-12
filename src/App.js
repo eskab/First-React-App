@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchTodos, setFilter } from './actions/todos';
+import { fetchTodos } from './actions/todos';
 
 import Spinner from './containers/Spinner';
 import TodoAddForm from './containers/TodoAddForm';
 import TodoList from './containers/TodoList';
-import ActionButton from './containers/ActionButton';
+import TodoFilterButton from './containers/TodoFilterButton';
+import MarkAllButton from './containers/MarkAllButton';
 
 class App extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
   }
 
   componentWillMount() {
@@ -25,9 +27,10 @@ class App extends Component {
         <Spinner />
         <TodoAddForm />
         <TodoList />
-        <ActionButton text="All" filter="ALL" onClick={setFilter} />
-        <ActionButton text="Active" filter="ACTIVE" onClick={setFilter} />
-        <ActionButton text="Completed" filter="COMPLETED" onClick={setFilter} />
+        <TodoFilterButton text="All" filter="ALL" />
+        <TodoFilterButton text="Active" filter="ACTIVE" />
+        <TodoFilterButton text="Completed" filter="COMPLETED" />
+        <MarkAllButton text="Mark all" todos={this.props.items} />
       </div>
     );
   }

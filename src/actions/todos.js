@@ -1,5 +1,7 @@
 import * as types from '../constans/actionTypes';
 
+import { toggleTodo } from './todo';
+
 export const addTodo = (id, text) => {
   return dispatch => {
     dispatch(pendingRequest())
@@ -34,6 +36,15 @@ export const deleteTodo = (id) => {
     .then(json => dispatch(Object.assign({}, json, { type: types.DELETE_TODO, id: id })))
     .catch(error => console.log(error))
   }
+}
+
+export const markAll = (todos) => {
+  return dispatch => {
+    dispatch(pendingRequest())
+    todos.map((item) => {
+      return dispatch(toggleTodo(item.id, item.text, false))
+    })
+  }  
 }
 
 export const setFilter = (filter) => {

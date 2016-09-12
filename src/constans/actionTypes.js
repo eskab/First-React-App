@@ -4,6 +4,7 @@ export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const TOGGLE_EDIT_TODO = 'TOGGLE_EDIT_TODO';
 export const EDIT_TODO = 'EDIT_TODO';
 
+export const MARK_ALL_DONE = 'MARK_ALL_DONE';
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 
 export const PENDING_REQUEST = 'PENDING_REQUEST';

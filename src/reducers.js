@@ -67,7 +67,7 @@ const todos = (state = {}, action) => {
     case types.TOGGLE_TODO:
     case types.TOGGLE_EDIT_TODO:
     case types.EDIT_TODO:
-      return { 
+      return {
         ...state, 
         todos: { 
           items: state.todos.items.map(t => todo(t, action)), 
