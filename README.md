@@ -1,14 +1,17 @@
->## My first React App
+# My first React App
 
 Install: 
+
 ``
 $ npm install
 ``
 
 Running:
+
 ``
 $ npm start
 ``
+
 This task will run both webpack and json-server.
 
 Todo:
