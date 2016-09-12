@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchTodos } from './actions/todos';
+import { fetchTodos, setFilter } from './actions/todos';
 
 import Spinner from './containers/Spinner';
 import TodoAddForm from './containers/TodoAddForm';
 import TodoList from './containers/TodoList';
-import TodoFilterButton from './containers/TodoFilterButton';
+import ActionButton from './containers/ActionButton';
 
 class App extends Component {
   constructor(props) {
@@ -25,9 +25,9 @@ class App extends Component {
         <Spinner />
         <TodoAddForm />
         <TodoList />
-        <TodoFilterButton text="All" filter="ALL" />
-        <TodoFilterButton text="Active" filter="ACTIVE" />
-        <TodoFilterButton text="Completed" filter="COMPLETED" />
+        <ActionButton text="All" filter="ALL" onClick={setFilter} />
+        <ActionButton text="Active" filter="ACTIVE" onClick={setFilter} />
+        <ActionButton text="Completed" filter="COMPLETED" onClick={setFilter} />
       </div>
     );
   }
