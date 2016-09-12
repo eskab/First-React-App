@@ -1,3 +1,3 @@
 >## My first React App
 
-todo: organize code, read about good practices 
+Todo: Resolve problem with multiple API calls and spinner
