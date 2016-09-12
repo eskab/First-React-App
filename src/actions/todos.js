@@ -1,6 +1,6 @@
 import * as types from '../constans/actionTypes';
 
-import { toggleTodo } from './todo';
+import { updateItem } from './todo';
 
 export const addTodo = (id, text) => {
   return dispatch => {
@@ -45,7 +45,7 @@ export const markAll = () => {
 
     dispatch(pendingRequest())
     items.map((item) => {
-      dispatch(toggleTodo(item.id, item.text, false))
+      dispatch(updateItem(item.id, item.text, true, (json) => dispatch({...json, type: types.TOGGLE_TODO})))
         .then(() => {
           if (count === items.length - 1) {
             dispatch(requestDone())
@@ -53,6 +53,7 @@ export const markAll = () => {
             count++;
           }
         })
+        .catch(error => console.log(error))
     });
   }
 }
@@ -89,5 +90,6 @@ export const fetchTodos = () => {
     return fetch('http://localhost:3000/todos')
       .then(response => response.json())
       .then(json => dispatch(receiveTodos(json)))
+      .catch(error => console.log(error))
   }
 }

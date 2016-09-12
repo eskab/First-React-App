@@ -15,22 +15,22 @@ const getTodos = (todos, filter) => {
     default: 
       return todos;
   }  
-};
+}
 
 const mapStateToProps = (state) => {
   return {
     todos: getTodos(state.todos.items, state.filter)
   }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     del: (id) => dispatch(deleteTodo(id)),
     toggle: (id, text, completed) => dispatch(toggleTodo(id, text, completed)),
     edit: (id, editMode) => dispatch(toggleEditTodo(id, editMode)), 
-    applyChanges: (id, isChanged, completed, text) => dispatch(applyChanges(id, isChanged, completed, text)),     
+    applyChanges: (id, text, completed) => dispatch(applyChanges(id, text, completed))  
   }
-};
+}
 
 const NewTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList)
 

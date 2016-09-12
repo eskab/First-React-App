@@ -15,7 +15,7 @@ const todo = (state = {}, action) => {
 
       return {
         ...state,
-        completed: !state.completed
+        completed: action.completed
       };
     case types.TOGGLE_EDIT_TODO:
       if (state.id !== action.id) {

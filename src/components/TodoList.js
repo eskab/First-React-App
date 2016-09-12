@@ -10,20 +10,20 @@ const TodoList = ({ todos, del, toggle, edit, applyChanges }) => {
           key={t.id}
           {...t}
           del={() => del(t.id)}
-          toggle={() => toggle(t.id, t.text, t.completed)}
+          toggle={() => toggle(t.id, t.text, !t.completed)}
           edit={() => edit(t.id, t.editMode)}
           applyChanges={(e) => {
             if (e.key === 'Enter') {
               const isChanged = t.text !== e.target.value;
 
-              applyChanges(t.id, (isChanged) ? false : completed, e.target.value);
+              applyChanges(t.id, e.target.value, (isChanged) ? false : completed);
             }
           }}
         />
       )}
     </ul>
   )
-};
+}
 
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.shape({
@@ -36,6 +36,6 @@ TodoList.propTypes = {
   toggle: PropTypes.func.isRequired,
   edit: PropTypes.func.isRequired,
   applyChanges: PropTypes.func.isRequired
-};
+}
 
 export default TodoList;

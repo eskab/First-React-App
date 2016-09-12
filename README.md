@@ -1,3 +1,7 @@
 >## My first React App
 
-Todo: Resolve problem with multiple API calls and spinner
+1. Todo
+⋅⋅* Write tests.
+⋅⋅* Cleanups in /actions.
+⋅⋅* Separate reducers.
+⋅⋅* Rxjs.
