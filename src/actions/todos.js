@@ -44,7 +44,7 @@ export const markAll = () => {
     let count = 0;
 
     dispatch(pendingRequest())
-    items.map((item) => {
+    items.map(item => {
       dispatch(updateItem(item.id, item.text, true, (json) => dispatch({...json, type: types.TOGGLE_TODO})))
         .then(() => {
           if (count === items.length - 1) {
@@ -54,6 +54,26 @@ export const markAll = () => {
           }
         })
         .catch(error => console.log(error))
+    });
+  }
+}
+
+export const deleteMarked = () => {
+  return (dispatch, getState) => {
+    const markedItems = getState().todos.items.filter(o => o.completed);
+    let count = 0;
+    
+    dispatch(pendingRequest())
+    markedItems.map(item => {
+      dispatch(deleteTodo(item.id))
+        .then(() => {
+          if (count === markedItems.length - 1) {
+            dispatch(requestDone())
+          } else {
+            count++;
+          }
+        })
+        .catch(error => console.log(error))      
     });
   }
 }

@@ -8,6 +8,7 @@ import TodoAddForm from './containers/TodoAddForm';
 import TodoList from './containers/TodoList';
 import TodoFilterButton from './containers/TodoFilterButton';
 import MarkAllButton from './containers/MarkAllButton';
+import DeleteMarkedButton from './containers/DeleteMarkedButton';
 
 class App extends Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class App extends Component {
         <TodoFilterButton text="Active" filter="ACTIVE" />
         <TodoFilterButton text="Completed" filter="COMPLETED" />
         <MarkAllButton text="Mark all" />
+        <DeleteMarkedButton text="Delete marked" />
       </div>
     );
   }
