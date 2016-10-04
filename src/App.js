@@ -13,7 +13,6 @@ import DeleteMarkedButton from './containers/DeleteMarkedButton';
 class App extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
   }
 
   componentWillMount() {
