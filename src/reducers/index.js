@@ -1,4 +1,4 @@
-import * as types from './constans/actionTypes';
+import * as types from '../constans/actionTypes';
 
 const todo = (state = {}, action) => {
   switch (action.type) {

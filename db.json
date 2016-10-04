@@ -1,3 +1,14 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "id": "QX0hVU9SjY3IIKuw",
+      "text": "bb",
+      "completed": false
+    },
+    {
+      "id": "HsOJ1Bh48qm4sVhw",
+      "text": "new todo",
+      "completed": false
+    }
+  ]
 }
