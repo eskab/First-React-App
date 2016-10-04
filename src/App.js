@@ -7,9 +7,6 @@ import Spinner from './containers/Spinner';
 import TodoAddForm from './containers/TodoAddForm';
 import TodoList from './containers/TodoList';
 import Footer from './components/Footer';
-import TodoFilterButton from './containers/TodoFilterButton';
-import MarkAllButton from './containers/MarkAllButton';
-import DeleteMarkedButton from './containers/DeleteMarkedButton';
 
 class App extends Component {
   constructor(props) {
