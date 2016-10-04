@@ -1,9 +1,3 @@
 {
-  "todos": [
-    {
-      "id": "O0w5U0Q45iwuLAFJ",
-      "text": "new todo ",
-      "completed": false
-    }
-  ]
+  "todos": []
 }

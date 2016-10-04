@@ -6,7 +6,7 @@ export const addTodo = (id, text) => {
   return dispatch => {
     dispatch(pendingRequest())
     dispatch(newItem(id, text, json => dispatch({...json, type: types.ADD_TODO })))
-  }  
+  }
 }
 
 export const deleteTodo = (id) => {

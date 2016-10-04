@@ -59,7 +59,7 @@ export const deleteItem = (id) => {
 export const toggleTodo = (id, text, completed) => {
   return dispatch => {
     dispatch(pendingRequest())
-    return dispatch(updateItem(id, text, completed, (json) => dispatch({...json, type: types.TOGGLE_TODO})))
+    return dispatch(updateItem(id, text, completed, json => dispatch({...json, type: types.TOGGLE_TODO})))
             .then(() => dispatch(requestDone()))
   }
 }
@@ -75,7 +75,7 @@ export const toggleEditTodo = (id, editMode) => {
 export const applyChanges = (id, text, completed) => {
   return dispatch => {
     dispatch(pendingRequest())
-    dispatch(updateItem(id, text, completed, (json) => dispatch({...json, type: types.EDIT_TODO, editMode: false})))
+    dispatch(updateItem(id, text, completed, json => dispatch({...json, type: types.EDIT_TODO, editMode: false})))
       .then(() => dispatch(requestDone()))
   }
 }
