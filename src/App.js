@@ -6,6 +6,7 @@ import { fetchTodos } from './actions/todos';
 import Spinner from './containers/Spinner';
 import TodoAddForm from './containers/TodoAddForm';
 import TodoList from './containers/TodoList';
+import Footer from './components/Footer';
 import TodoFilterButton from './containers/TodoFilterButton';
 import MarkAllButton from './containers/MarkAllButton';
 import DeleteMarkedButton from './containers/DeleteMarkedButton';
@@ -27,11 +28,7 @@ class App extends Component {
         <Spinner />
         <TodoAddForm />
         <TodoList />
-        <TodoFilterButton text="All" filter="ALL" />
-        <TodoFilterButton text="Active" filter="ACTIVE" />
-        <TodoFilterButton text="Completed" filter="COMPLETED" />
-        <MarkAllButton text="Mark all" />
-        <DeleteMarkedButton text="Delete marked" />
+        <Footer />
       </div>
     );
   }
