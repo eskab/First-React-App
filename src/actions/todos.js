@@ -5,14 +5,14 @@ import { updateItem, newItem, deleteItem } from './todo';
 export const addTodo = (id, text) => {
   return dispatch => {
     dispatch(pendingRequest())
-    dispatch(newItem(id, text, json => dispatch(Object.assign({}, json, { type: types.ADD_TODO }))))
+    dispatch(newItem(id, text, json => dispatch({...json, type: types.ADD_TODO })))
   }  
 }
 
 export const deleteTodo = (id) => {
   return dispatch => {
     dispatch(pendingRequest())
-    dispatch(deleteItem(id, json => dispatch(Object.assign({}, json, { type: types.DELETE_TODO, id: id }))))
+    dispatch(deleteItem(id, json => dispatch({...json, type: types.DELETE_TODO, id: id })))
   }
 }
 
@@ -23,7 +23,7 @@ export const markAll = () => {
 
     dispatch(pendingRequest())
     items.map(item => {
-      dispatch(updateItem(item.id, item.text, true, (json) => dispatch({...json, type: types.TOGGLE_TODO})))
+      dispatch(updateItem(item.id, item.text, true, json => dispatch({...json, type: types.TOGGLE_TODO})))
         .then(() => {
           if (count === items.length - 1) {
             dispatch(requestDone())

@@ -51,7 +51,7 @@ export const deleteItem = (id) => {
       })
     })
     .then(response => response.json())
-    .then(json => dispatch(Object.assign({}, json, { type: types.DELETE_TODO, id: id })))
+    .then(json => dispatch({...json, type: types.DELETE_TODO, id: id }))
     .catch(error => console.log(error))
   }  
 }
