@@ -1,40 +1,18 @@
 import * as types from '../constans/actionTypes';
 
-import { updateItem } from './todo';
+import { updateItem, newItem, deleteItem } from './todo';
 
 export const addTodo = (id, text) => {
   return dispatch => {
     dispatch(pendingRequest())
-    return fetch('http://localhost:3000/todos', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        id: id,
-        text: text,
-        completed: false
-      })
-    })
-    .then(response => response.json())
-    .then(json => dispatch(Object.assign({}, json, { type: types.ADD_TODO })))
-    .catch(error => console.log(error))
+    dispatch(newItem(id, text, json => dispatch(Object.assign({}, json, { type: types.ADD_TODO }))))
   }  
 }
 
 export const deleteTodo = (id) => {
   return dispatch => {
     dispatch(pendingRequest())
-    return fetch(`http://localhost:3000/todos/${id}`, {
-      method: 'DELETE',
-      body: JSON.stringify({
-        id: id
-      })
-    })
-    .then(response => response.json())
-    .then(json => dispatch(Object.assign({}, json, { type: types.DELETE_TODO, id: id })))
-    .catch(error => console.log(error))
+    dispatch(deleteItem(id, json => dispatch(Object.assign({}, json, { type: types.DELETE_TODO, id: id }))))
   }
 }
 
@@ -65,7 +43,7 @@ export const deleteMarked = () => {
     
     dispatch(pendingRequest())
     markedItems.map(item => {
-      dispatch(deleteTodo(item.id))
+      dispatch(deleteItem(item.id, json => dispatch({...json, type: types.TOGGLE_TODO})))
         .then(() => {
           if (count === markedItems.length - 1) {
             dispatch(requestDone())

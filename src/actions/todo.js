@@ -22,6 +22,40 @@ export const updateItem = (id, text, completed, cb) => {
   }
 }
 
+export const newItem = (id, text, cb) => {
+  return dispatch => {
+    return fetch('http://localhost:3000/todos', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: id,
+        text: text,
+        completed: false
+      })
+    })
+    .then(response => response.json())
+    .then(json => cb(json))
+    .catch(error => console.log(error))
+  }  
+}
+
+export const deleteItem = (id) => {
+  return dispatch => {
+    return fetch(`http://localhost:3000/todos/${id}`, {
+      method: 'DELETE',
+      body: JSON.stringify({
+        id: id
+      })
+    })
+    .then(response => response.json())
+    .then(json => dispatch(Object.assign({}, json, { type: types.DELETE_TODO, id: id })))
+    .catch(error => console.log(error))
+  }  
+}
+
 export const toggleTodo = (id, text, completed) => {
   return dispatch => {
     dispatch(pendingRequest())
